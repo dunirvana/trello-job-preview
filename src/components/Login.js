@@ -12,6 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
 
+import TrelloService from '../services/TrelloService'
+const trelloService = new TrelloService()
+
 const styles = () => ({
   "@global": {
     body: {
@@ -56,6 +59,19 @@ class Login extends Component {
     const { email, password } = this.state;
 
     dispatch(loginUser(email, password));
+  };
+
+  handleTeste = () => {
+
+    console.log("handleTeste");
+
+    //Promise
+    //var dataPromise = trelloService.getListsOnBoard("TalmVtWz");
+    var dataPromise = trelloService.getCardsOnList("5e1c677f84b36130168cb5ee");    
+    dataPromise.then((data) => {
+      
+      console.log(data);
+    })
   };
 
   render() {
@@ -106,6 +122,18 @@ class Login extends Component {
             >
               Sign In
             </Button>
+
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={this.handleTeste}
+            >
+              Teste!
+            </Button>
+
           </Paper>
         </Container>
       );
