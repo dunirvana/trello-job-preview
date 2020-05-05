@@ -8,6 +8,7 @@ export default class TrelloService {
         
         var Trello = require("trello");
         this.trelloClient = new Trello("MY APPLICATION KEY", "MY USER TOKEN");
+
     }
 
     /** Recuperar listas de um quadro */

@@ -11,9 +11,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Container from "@material-ui/core/Container";
-
-import TrelloService from '../services/TrelloService'
-const trelloService = new TrelloService()
+import Asynchronous from "./Asynchronous";
 
 const styles = () => ({
   "@global": {
@@ -61,19 +59,6 @@ class Login extends Component {
     dispatch(loginUser(email, password));
   };
 
-  handleTeste = () => {
-
-    console.log("handleTeste");
-
-    //Promise
-    //var dataPromise = trelloService.getListsOnBoard("TalmVtWz");
-    var dataPromise = trelloService.getCardsOnList("5e1c677f84b36130168cb5ee");    
-    dataPromise.then((data) => {
-      
-      console.log(data);
-    })
-  };
-
   render() {
     const { classes, loginError, isAuthenticated } = this.props;
     if (isAuthenticated) {
@@ -88,6 +73,13 @@ class Login extends Component {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+
+            <Asynchronous 
+              label="Empresa"
+            >
+
+              </Asynchronous>
+
             <TextField
               variant="outlined"
               margin="normal"
@@ -122,18 +114,7 @@ class Login extends Component {
             >
               Sign In
             </Button>
-
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.handleTeste}
-            >
-              Teste!
-            </Button>
-
+            
           </Paper>
         </Container>
       );
